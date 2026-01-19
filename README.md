@@ -36,7 +36,7 @@ A RundownAPI endpoint returns JSON with these fields:
 
 | Field | What it is |
 |-------|-----------|
-| `rundown_version` | Version of the spec (currently `"0.1"`) |
+| `rundown_version` | Version of the spec (currently `"0.1"`). This refers to the spec version, not your API's version. If your API has its own versioning, add it as an optional field. |
 | `base_url` | Where the API lives |
 | `auth` | How to authenticate (method, parameter names, header format) |
 | `purpose` | What this API does, in plain language. One or two sentences. |
@@ -318,6 +318,10 @@ const base_url = `${protocol}://${host}`;
 **Update it when your API changes.** The rundown should match your actual endpoints. If you add a new route, add it here too.
 
 **Test it with an AI.** Give Claude or ChatGPT the URL and ask it to integrate. Watch what works and what confuses it. Update your `ai_instructions` based on what you see.
+
+### Reference implementation
+
+Threadbaire Server includes a working `/api/rundown` endpoint: [github.com/threadbaire/server](https://github.com/threadbaire/server)
 
 ## License
 
