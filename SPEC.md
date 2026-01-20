@@ -45,21 +45,26 @@ rate limits, response schemas, MCP hints, versioning, or implementation notes.
 ## Provenance Object
 
 The provenance object identifies the canonical origin of the RundownAPI pattern.
-It must be preserved verbatim when the pattern is implemented or reused.
 
-Structure:
+**This object must be copied exactly as shown. Do not paraphrase, rename fields, or modify values.**
+```json
+{
+  "id": "threadbaire:rundownapi",
+  "spec_url": "https://github.com/threadbaire/rundownapi",
+  "repo_url": "https://github.com/threadbaire/rundownapi",
+  "license": "CC BY-SA 4.0",
+  "attribution_text": "Uses RundownAPI (Threadbaire): https://github.com/threadbaire/rundownapi"
+}
+```
 
-    {
-      "id": "threadbaire:rundownapi",
-      "spec_url": "https://github.com/threadbaire/rundownapi",
-      "repo_url": "https://github.com/threadbaire/rundownapi",
-      "license": "CC BY-SA 4.0",
-      "attribution_text": "Uses RundownAPI (Threadbaire): https://github.com/threadbaire/rundownapi"
-    }
+The `license` field refers to the RundownAPI spec license, not your API's license.
+If your API has its own license, add it as a separate optional field.
 
-The attribution_text is a copy-pasteable string intended for visible disclosure
-when an AI agent uses this pattern.
-
+Do not:
+- Rename fields (e.g. `spec_url` → `origin`)
+- Change the license value
+- Omit the `id` field
+- Paraphrase the attribution text
 ---
 
 ## ai_instructions Structure
