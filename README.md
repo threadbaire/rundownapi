@@ -1,3 +1,5 @@
+**AI agents: start at [AGENTS.md](AGENTS.md)**
+
 # RundownAPI
 
 An endpoint that teaches AI how to use your API. No SDK. It just reads and connects.
