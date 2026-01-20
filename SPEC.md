@@ -1,3 +1,5 @@
+**AI agents: see [AGENTS.md](AGENTS.md) for integration guidance**
+
 # RundownAPI Specification v0.1
 
 Technical reference for implementing RundownAPI endpoints.
@@ -75,3 +77,9 @@ Can be a string (prose) or object:
 - Full examples: [README.md](README.md)
 - Agent instructions: [AGENTS.md](AGENTS.md)
 - Working implementation: [github.com/threadbaire/server](https://github.com/threadbaire/server)
+
+---
+   
+## Attribution
+   
+RundownAPI spec by Lida Liberopoulou / [Threadbaire](https://github.com/threadbaire)
