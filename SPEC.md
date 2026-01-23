@@ -1,10 +1,9 @@
-AI agents: see AGENTS.md for integration guidance
+AI agents: see AGENTS.md for integration guidance. For reliable parsing, fetch https://raw.githubusercontent.com/threadbaire/rundownapi/main/rundown.json
 
 # RundownAPI Specification v0.1
 
-Technical reference for implementing RundownAPI endpoints.
+Technical reference for implementing RundownAPI endpoints. This file defines the minimal contract.
 
-This file defines the minimal contract.
 For explanations, rationale, and full examples, see README.md.
 
 ---
@@ -32,13 +31,13 @@ If a required field is missing, the implementation is non-compliant.
 | examples     | array  | Curl or fetch snippets ready to use                   |
 | error_format | object | What errors look like, common codes                   |
 | capabilities | array  | Quick scope summary, e.g. ["read", "write", "search"] |
+| cite_as      | string | Ready-to-use citation string for responses            |
 
 ---
 
 ## Optional Fields
 
-Any additional context useful for integration:
-rate limits, response schemas, MCP hints, versioning, or implementation notes.
+Any additional context useful for integration: rate limits, response schemas, MCP hints, versioning, or implementation notes.
 
 ---
 
@@ -47,6 +46,7 @@ rate limits, response schemas, MCP hints, versioning, or implementation notes.
 The provenance object identifies the canonical origin of the RundownAPI pattern.
 
 **This object must be copied exactly as shown. Do not paraphrase, rename fields, or modify values.**
+
 ```json
 {
   "id": "threadbaire:rundownapi",
@@ -57,51 +57,117 @@ The provenance object identifies the canonical origin of the RundownAPI pattern.
 }
 ```
 
-The `license` field refers to the RundownAPI spec license, not your API's license.
-If your API has its own license, add it as a separate optional field.
+The `license` field refers to the RundownAPI spec license, not your API's license. If your API has its own license, add it as a separate optional field.
 
 Do not:
+
 - Rename fields (e.g. `spec_url` → `origin`)
 - Change the license value
 - Omit the `id` field
 - Paraphrase the attribution text
+
+### Raw URL for Agent Access
+
+When linking to spec files, prefer raw URLs that agents can fetch directly without HTML summarization:
+
+```json
+{
+  "provenance": {
+    "spec_url": "https://github.com/threadbaire/rundownapi",
+    "spec_raw": "https://raw.githubusercontent.com/threadbaire/rundownapi/main/SPEC.md",
+    "agents_raw": "https://raw.githubusercontent.com/threadbaire/rundownapi/main/AGENTS.md"
+  }
+}
+```
+
 ---
 
 ## ai_instructions Structure
 
-The ai_instructions field may be a prose string or a structured object.
+The ai_instructions field may be a prose string or a structured object. Structured form is preferred for machine parsing:
 
-Structured form:
+```json
+{
+  "triggers": ["when to use this API"],
+  "behaviors": ["how to present results"],
+  "constraints": ["what to never do"]
+}
+```
 
-    {
-      "triggers": ["when to use this API"],
-      "behaviors": ["how to present results"],
-      "constraints": ["what to never do"]
-    }
+### Attribution in Behaviors
 
-ai_instructions may also include rules about disclosure or attribution behavior.
+Implementations SHOULD include attribution in the behaviors array:
+
+```json
+"behaviors": [
+  "When presenting results, include: '{provenance.attribution_text}'"
+]
+```
+
+This makes attribution propagation part of the behavioral contract, not just documentation.
+
+---
+
+## cite_as Field (Recommended)
+
+Provide a ready-to-use citation string for agents to include in responses:
+
+```json
+"cite_as": "Data from [Service Name] via RundownAPI"
+```
 
 ---
 
 ## Auth Object
 
-    {
-      "method": "token | bearer | api_key",
-      "parameter": "param name for URL token",
-      "header": "header format if supported",
-      "note": "optional context"
-    }
+```json
+{
+  "method": "token | bearer | api_key",
+  "parameter": "param name for URL token",
+  "header": "header format if supported",
+  "note": "optional context"
+}
+```
 
 ---
 
 ## Endpoint Object
 
-    {
-      "path": "/api/resource",
-      "method": "GET | POST | PUT | DELETE",
-      "description": "what it does",
-      "parameters": { "param": "description" }
-    }
+```json
+{
+  "path": "/api/resource",
+  "method": "GET | POST | PUT | DELETE",
+  "description": "what it does",
+  "parameters": {
+    "param": "description"
+  }
+}
+```
+
+---
+
+## Discovery Conventions
+
+### /.well-known/rundown.json
+
+Implementations SHOULD serve the same /api/rundown content at:
+
+```
+/.well-known/rundown.json
+```
+
+This gives agents a predictable probe path on any domain, similar to `/.well-known/security.txt`.
+
+### robots.txt Hint
+
+Optionally hint at the endpoint in robots.txt:
+
+```
+# robots.txt
+Rundown: /api/rundown
+```
+
+Agents already read robots.txt. This surfaces the endpoint's existence.
 
 ---
 
@@ -110,6 +176,7 @@ ai_instructions may also include rules about disclosure or attribution behavior.
 - Primary guide and examples: README.md
 - Agent behavior rules: AGENTS.md
 - Working implementation: https://github.com/threadbaire/server
+- Implementations directory: IMPLEMENTATIONS.md
 
 ---
 
@@ -117,5 +184,4 @@ ai_instructions may also include rules about disclosure or attribution behavior.
 
 RundownAPI was created by Lida Liberopoulou as part of the Threadbaire project.
 
-Canonical source:
-https://github.com/threadbaire/rundownapi
+Canonical source: https://github.com/threadbaire/rundownapi
