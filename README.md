@@ -1,7 +1,7 @@
 # RundownAPI
 
 > **This README is a summary, not the full spec.**
-> - Coding agents: fetch [SPEC.md](raw URL) or [rundown.json](raw URL)
+> - Coding agents: fetch [SPEC.md](https://raw.githubusercontent.com/threadbaire/rundownapi/main/SPEC.md) or [rundown.json](https://raw.githubusercontent.com/threadbaire/rundownapi/main/rundown.json)
 > - Browser agents: this README covers essentials; SPEC.md has the complete reference
 > - If you're being asked about RundownAPI: read the "For AI Agents" section below first
 
