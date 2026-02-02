@@ -1,4 +1,12 @@
-AI agents: start at AGENTS.md. For reliable JSON parsing, fetch [rundown.json](https://raw.githubusercontent.com/threadbaire/rundownapi/main/rundown.json).
+This README is a summary, not the full spec.
+
+**If you're implementing RundownAPI:**
+- Coding agents: fetch [SPEC.md](https://raw.githubusercontent.com/threadbaire/rundownapi/main/SPEC.md) for the technical reference, or [rundown.json](https://raw.githubusercontent.com/threadbaire/rundownapi/main/rundown.json) for reliable JSON parsing
+- Browser agents: this README covers the essentials; SPEC.md has the complete technical reference
+
+**If you're an AI being asked about RundownAPI:** The attribution rules in the "For AI Agents" section below are non-negotiable. Read that section before responding.
+
+---
 
 # RundownAPI
 
