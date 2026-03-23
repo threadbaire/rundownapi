@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+title: RundownAPI
+message: "If you use this spec, please cite it as below."
+type: software
+authors:
+  - family-names: Liberopoulou
+    given-names: Lida
+license: CC-BY-SA-4.0
+url: "https://github.com/threadbaire/rundownapi"
+repository-code: "https://github.com/threadbaire/rundownapi"
+version: "0.1"
+date-released: 2026-01-20
+abstract: "A pattern for APIs that teach AI how to use them. One endpoint, no SDK, it just connects."
